@@ -29,7 +29,9 @@ h1{text-shadow: 1px 1px darkorange;
 <!-- Site wrapper -->
 <div class="wrapper">
  
-  <?php include "includes/sidebar.php"?>
+  <?php include "includes/sidebar.php";
+  include "includes/content_header.php";
+  ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -47,10 +49,58 @@ h1{text-shadow: 1px 1px darkorange;
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+
+      <?php
+
+
+      include "conexao.php";
+      $conn = conexao();
+
+
+      try {
+        // set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // prepare sql and bind parameters
+        $stmt = $conn->prepare("INSERT INTO livros (titulo, autor, genero, editora, ano)
+        VALUES (:titulo, :autor, :genero, :editora, :ano)");
+        $stmt->bindParam(':titulo', $titulo);
+        $stmt->bindParam(':autor', $autor);
+        $stmt->bindParam(':genero', $genero);
+        $stmt->bindParam(':editora', $editora);
+        $stmt->bindParam(':ano', $ano);
+        
+
+        // insert a row
+        //$titulo = "Kingdom Hearts Vol.2";
+        //$autor = "Shiro Amano";
+        //$genero = "Aventura";
+        //$editora = "Square Enix";
+        //$ano = "2008";
+
+
+        $titulo = $_POST['titulo'];
+        $autor = $_POST['autor'];
+        $genero = $_POST['genero'];
+        $editora = $_POST['editora'];
+        $ano = $_POST['ano'];
+        
+        $stmt->execute();
+
+        
+
+        echo "Novo cadastro efetuado com sucesso!";
+      } catch(PDOException $e) {
+        echo "Error: " . $e->getMessage();
+      }
+      $conn = null;
+
+?>
        
       <div class="card">
               <div class="card-header">
-                <h3 class="card-title">DataTable with default features</h3>
+                <h3 class="card-title">Livros Cadastrados</h3>
+                <small class="float-right"> <a href="add_livro.php"> <button type="button" class="btn btn-block btn-primary">Adicionar Livro</button> </a></small>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -67,31 +117,63 @@ h1{text-shadow: 1px 1px darkorange;
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 4.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td> 4</td>
-                    <td>X</td>
-                  </tr>
-                  <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                      Explorer 5.0
-                    </td>
-                    <td>Win 95+</td>
-                    <td>5</td>
-                    <td>C</td>
-                  </tr>
-                  </tfoot>
+                  
+
+                  <?php
+                    //echo "<table style='border: solid 1px black;'>";
+                    //echo "<tr><th>Id</th><th>Firstname</th><th>Lastname</th></tr>";
+
+                  class TableRows extends RecursiveIteratorIterator {
+                    function __construct($it) {
+                      parent::__construct($it, self::LEAVES_ONLY);
+                    }
+
+                    function current() {
+                      return "<td>" . parent::current(). "</td>";
+                    }
+
+                    function beginChildren() {
+                      echo "<tr>";
+                    }
+
+                    function endChildren() {
+                      echo "</tr>" . "\n";
+                    }
+                  }
+
+                  //include "conexao.php";
+
+                  $conn=conexao();
+
+                  try {
+                    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                    $stmt = $conn->prepare("SELECT * FROM livros");
+                    $stmt->execute();
+
+                    // set the resulting array to associative
+                    $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                    foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
+                      echo $v;
+                    }
+                  } catch(PDOException $e) {
+                    echo "Error: " . $e->getMessage();
+                  }
+                  $conn = null;
+                  //echo "</table>";
+            ?>
+
+
+
+
+
+
+                  </tbody>
                 </table>
               </div>
               <!-- /.card-body -->
             </div>
 
-
+       
 
 
 

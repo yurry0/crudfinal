@@ -4,7 +4,7 @@
 <head>
 
 <style>
-h1{text-shadow: 1px 1px darkorange;};
+h1{text-shadow: 1px 1px  black;};
 
 </style>
 
@@ -35,7 +35,7 @@ h1{text-shadow: 1px 1px darkorange;};
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-7">
-            <h1 style="text-align: center; margin-left:42rem"> Índice de Livros </h1>
+            <h1 style="text-align: center; margin-left:42rem"> HOMEPAGE </h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
