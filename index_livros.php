@@ -59,7 +59,7 @@ h1{text-shadow: 1px 1px darkorange;
                   <tr>
                     <th>CÓDIGO</th>
                     <th>Titulo</th>
-                    <th>Autor(es)</th>
+                    <th>Autor(as)</th>
                     <th>Genero</th>
                     <th>Editora</th>
                     <th>Ano</th>
