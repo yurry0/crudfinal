@@ -3,6 +3,13 @@
 <html>
 <head>
 
+
+<script language="JavaScript" type="text/javascript">
+function checkDelete(){
+    return confirm('Você tem certeza que deseja excluir?');
+}
+</script>
+
 <style>
 h1{text-shadow: -1px 3px white;
     letter-spacing: 15px;
@@ -133,7 +140,7 @@ h1{text-shadow: -1px 3px white;
                           <i class="fas fa-pencil-alt">
                           </i>
                       </a>
-                      <a class="btn btn-danger btn-sm" href="#">
+                      <a class="btn btn-danger btn-sm" onclick="return checkDelete()" href="delete_livro.php?id='.$v['id'].'">
                           <i class="fas fa-trash">
                           </i>
                       </a> </td>';
