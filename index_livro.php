@@ -121,7 +121,7 @@ h1{text-shadow: -1px 3px white;
 
                     // set the resulting array to associative
                     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                    foreach($stmt->fetchAll() as $k=>$v) {
+                    foreach($stmt->fetchAll() as $k=>$v){
                       //echo $v;
                       //var_dump($v); 
                       echo '<tr>';
@@ -136,7 +136,7 @@ h1{text-shadow: -1px 3px white;
                       <i class="fas fa-folder">
                       </i>
                       </a>
-                      <a class="btn btn-info btn-sm" href="#">
+                      <a class="btn btn-info btn-sm" href="edit_livro.php?id='.$v['id'].'">
                           <i class="fas fa-pencil-alt">
                           </i>
                       </a>
