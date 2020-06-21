@@ -4,7 +4,9 @@
 <head>
 
 <style>
-h1{text-shadow: 1px 1px  black;};
+h1{text-shadow: 1px 1px black;
+    letter-spacing: 15px;
+    background-color:deepskyblue};
 
 </style>
 
@@ -35,7 +37,7 @@ h1{text-shadow: 1px 1px  black;};
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-7">
-            <h1 style="text-align: center; margin-left:42rem"> HOMEPAGE </h1>
+            <h1 style="text-align: center; margin-left:42rem">HOMEPAGE</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->

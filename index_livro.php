@@ -4,8 +4,9 @@
 <head>
 
 <style>
-h1{text-shadow: 1px 1px darkorange;
-    letter-spacing: 25px;};
+h1{text-shadow: -1px 3px white;
+    letter-spacing: 15px;
+    background-color:deepskyblue};
 
 </style>
  <!-- DataTables -->
@@ -40,7 +41,7 @@ h1{text-shadow: 1px 1px darkorange;
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-7">
-            <h1 style="text-align: center; margin-left:41rem">　【Livraria】 </h1>
+            <h1 style="text-align: center; margin-left:41rem">Livraria</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -84,7 +85,7 @@ h1{text-shadow: 1px 1px darkorange;
                     //echo "<table style='border: solid 1px black;'>";
                     //echo "<tr><th>Id</th><th>Firstname</th><th>Lastname</th></tr>";
 
-                  class TableRows extends RecursiveIteratorIterator {
+                  /*class TableRows extends RecursiveIteratorIterator {
                     function __construct($it) {
                       parent::__construct($it, self::LEAVES_ONLY);
                     }
@@ -101,7 +102,7 @@ h1{text-shadow: 1px 1px darkorange;
                       echo "</tr>" . "\n";
                     }
                   }
-
+                  */
                   //include "conexao.php";
 
                   $conn=conexao();
@@ -113,9 +114,30 @@ h1{text-shadow: 1px 1px darkorange;
 
                     // set the resulting array to associative
                     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                    foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
+                    foreach($stmt->fetchAll() as $k=>$v) {
                       //echo $v;
-                      var_dump($v); 
+                      //var_dump($v); 
+                      echo '<tr>';
+                      echo '<td>'.$v['id'].'</td>';
+                      echo '<td>'.$v['titulo'].'</td>';
+                      echo '<td>'.$v['autor'].'</td>';
+                      echo '<td>'.$v['genero'].'</td>';
+                      echo '<td>'.$v['editora'].'</td>';
+                      echo '<td>'.$v['ano'].'</td>';
+                      echo '<td style="text-align:center"> 
+                      <a class="btn btn-primary btn-sm" href="#">
+                      <i class="fas fa-folder">
+                      </i>
+                      </a>
+                      <a class="btn btn-info btn-sm" href="#">
+                          <i class="fas fa-pencil-alt">
+                          </i>
+                      </a>
+                      <a class="btn btn-danger btn-sm" href="#">
+                          <i class="fas fa-trash">
+                          </i>
+                      </a> </td>';
+                      echo '</tr>';
                     }
                   } catch(PDOException $e) {
                     echo "Error: " . $e->getMessage();
