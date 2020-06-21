@@ -50,52 +50,11 @@ h1{text-shadow: 1px 1px darkorange;
     <section class="content">
       <div class="container-fluid">
 
-      <?php
-
+     <?php
 
       include "conexao.php";
-      $conn = conexao();
 
-
-      try {
-        // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        // prepare sql and bind parameters
-        $stmt = $conn->prepare("INSERT INTO livros (titulo, autor, genero, editora, ano)
-        VALUES (:titulo, :autor, :genero, :editora, :ano)");
-        $stmt->bindParam(':titulo', $titulo);
-        $stmt->bindParam(':autor', $autor);
-        $stmt->bindParam(':genero', $genero);
-        $stmt->bindParam(':editora', $editora);
-        $stmt->bindParam(':ano', $ano);
-        
-
-        // insert a row
-        //$titulo = "Kingdom Hearts Vol.2";
-        //$autor = "Shiro Amano";
-        //$genero = "Aventura";
-        //$editora = "Square Enix";
-        //$ano = "2008";
-
-
-        $titulo = $_POST['titulo'];
-        $autor = $_POST['autor'];
-        $genero = $_POST['genero'];
-        $editora = $_POST['editora'];
-        $ano = $_POST['ano'];
-        
-        $stmt->execute();
-
-        
-
-        echo "Novo cadastro efetuado com sucesso!";
-      } catch(PDOException $e) {
-        echo "Error: " . $e->getMessage();
-      }
-      $conn = null;
-
-?>
+     ?>
        
       <div class="card">
               <div class="card-header">
@@ -113,6 +72,8 @@ h1{text-shadow: 1px 1px darkorange;
                     <th>Genero</th>
                     <th>Editora</th>
                     <th>Ano</th>
+                    <th>OPÇÕES</th>
+                    
                     
                   </tr>
                   </thead>
@@ -153,7 +114,8 @@ h1{text-shadow: 1px 1px darkorange;
                     // set the resulting array to associative
                     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
                     foreach(new TableRows(new RecursiveArrayIterator($stmt->fetchAll())) as $k=>$v) {
-                      echo $v;
+                      //echo $v;
+                      var_dump($v); 
                     }
                   } catch(PDOException $e) {
                     echo "Error: " . $e->getMessage();
@@ -161,11 +123,6 @@ h1{text-shadow: 1px 1px darkorange;
                   $conn = null;
                   //echo "</table>";
             ?>
-
-
-
-
-
 
                   </tbody>
                 </table>

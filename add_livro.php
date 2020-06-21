@@ -58,7 +58,7 @@ h1{text-shadow: 1px 1px black;
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" name="cadastrar_livro" method="POST" action="index_livro.php">
+              <form role="form" name="cadastrar_livro" method="POST" action="cad_livro.php">
                 <div class="card-body">
                   <!-- <div class="form-group">
                     <label for="id">Código</label>

@@ -27,7 +27,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                <li class="nav-item">
-            <a href="index_livros.php" class="nav-link active">
+            <a href="index_livro.php" class="nav-link active">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Livros
