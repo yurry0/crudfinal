@@ -19,6 +19,10 @@ h1{text-shadow: -1px 3px black;
   <title>AV2</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="plugins/toastr/toastr.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
@@ -32,7 +36,8 @@ h1{text-shadow: -1px 3px black;
 <!-- Site wrapper -->
 <div class="wrapper">
  
-  <?php include "includes/sidebar.php";
+  <?php   session_start();
+  include "includes/sidebar.php";
   include "includes/content_header.php";
   ?>
 
@@ -53,18 +58,18 @@ h1{text-shadow: -1px 3px black;
     <section class="content">
       <div class="container-fluid">
 
-     <?php
+            <?php
+              include "conexao.php";
+            ?>
 
-      include "conexao.php";
+              <?php 
+              if(isset($_SESSION['del'])){
+              echo $_SESSION['del'];
+              }
+              
+              session_unset();
 
-     ?>
-
-               
-
-
-
-
-
+              ?>
 
       <div class="card">
               <div class="card-header">
@@ -91,28 +96,6 @@ h1{text-shadow: -1px 3px black;
                   
 
                   <?php
-                    //echo "<table style='border: solid 1px black;'>";
-                    //echo "<tr><th>Id</th><th>Firstname</th><th>Lastname</th></tr>";
-
-                  /*class TableRows extends RecursiveIteratorIterator {
-                    function __construct($it) {
-                      parent::__construct($it, self::LEAVES_ONLY);
-                    }
-
-                    function current() {
-                      return "<td>" . parent::current(). "</td>";
-                    }
-
-                    function beginChildren() {
-                      echo "<tr>";
-                    }
-
-                    function endChildren() {
-                      echo "</tr>" . "\n";
-                    }
-                  }
-                  */
-                  //include "conexao.php";
 
                   $conn=conexao();
 
@@ -124,8 +107,6 @@ h1{text-shadow: -1px 3px black;
                     // set the resulting array to associative
                     $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
                     foreach($stmt->fetchAll() as $k=>$v){
-                      //echo $v;
-                      //var_dump($v); 
                       echo '<tr>';
                       echo '<td>'.$v['id'].'</td>';
                       echo '<td>'.$v['titulo'].'</td>';
@@ -134,18 +115,20 @@ h1{text-shadow: -1px 3px black;
                       echo '<td>'.$v['editora'].'</td>';
                       echo '<td>'.$v['ano'].'</td>';
                       echo '<td style="text-align:center"> 
+                      
                       <a class="btn btn-primary btn-sm" href="visu_livro.php?id='.$v['id'].'">
-                      <i class="fas fa-folder">
-                      </i>
+                              <i class="fas fa-folder">
+                              </i>
                       </a>
+                      
                       <a class="btn btn-info btn-sm" href="edit_livro.php?id='.$v['id'].'">
                           <i class="fas fa-pencil-alt">
                           </i>
                       </a>
-                      <a class="btn btn-danger btn-sm" data-href="delete_livro.php?id='.$v['id'].'" data-toggle="modal" data-target="#confirm-delete">
-                      <i class="far fa-trash-alt"></i>
-                        
-                          </i>
+                       
+                      <a class="btn btn-danger btn-sm" href="delete_livro.php?id='.$v['id'].'" data-href="delete_livro.php?id='.$v['id'].'" data-toggle="modal" data-target="#confirm-delete">
+                      <i class="fas fa-trash-alt">
+                      </i>
                       </a>';
                       echo '</tr>';
                     }
@@ -180,25 +163,6 @@ h1{text-shadow: -1px 3px black;
           </div>
       </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
           </section>
     <!-- /.content -->
 
@@ -207,8 +171,8 @@ h1{text-shadow: -1px 3px black;
   <!-- /.content-wrapper -->
 
 </div>
-  <?php include "includes/footer.php";
-  ?>
+    <?php include "includes/footer.php";
+    ?>
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -217,24 +181,34 @@ h1{text-shadow: -1px 3px black;
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
+<!-- SweetAlert2 -->
+<script src="plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="plugins/toastr/toastr.min.js"></script>
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
-
 <!-- Bootstrap 4 -->
 <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
-<!-- DataTables -->
+
+
+
+<script type="text/javascript">
+
+</script>
+
+
+
 <script> 
 $('#confirm-delete').on('show.bs.modal', function(e) {
     $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 });
 </script>
 
-
+<!-- DataTables -->
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>

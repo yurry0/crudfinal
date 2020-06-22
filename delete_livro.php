@@ -1,6 +1,6 @@
 <?php
 
-
+session_start();
 include "conexao.php";
 $conn = conexao();
 
@@ -18,10 +18,9 @@ try {
   $stmt->execute();
 
   
-
-  //echo "Deletado com sucesso";
-} catch(PDOException $e) {
-  echo "Error: " . $e->getMessage();
+  $_SESSION['del'] = "Deletado com sucesso";
+  } catch(PDOException $e) {
+  $_SESSION['del'] = "Error: " . $e->getMessage();
 }
 $conn = null;
 
