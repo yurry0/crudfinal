@@ -1,9 +1,6 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-
-
 
 <style>
 h1{text-shadow: -1px 3px black;
@@ -11,8 +8,11 @@ h1{text-shadow: -1px 3px black;
     background-color:deepskyblue};
 
 </style>
+
+
+
  <!-- DataTables -->
- <link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" href="plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,7 +48,7 @@ h1{text-shadow: -1px 3px black;
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-7">
-            <h1 style="text-align: center; margin-left:41rem; color:white;">Livraria</h1>
+            <h1 style="text-align: center; margin-left:41rem; color:white;">-Livraria-</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -183,8 +183,6 @@ h1{text-shadow: -1px 3px black;
 <!-- ./wrapper -->
 <!-- SweetAlert2 -->
 <script src="plugins/sweetalert2/sweetalert2.min.js"></script>
-<!-- Toastr -->
-<script src="plugins/toastr/toastr.min.js"></script>
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -196,9 +194,18 @@ h1{text-shadow: -1px 3px black;
 
 
 
+
 <script type="text/javascript">
 
+   window.onload = function(){
+      toastr.info('Atualizou, Mostrou!')
+    };
+
 </script>
+
+
+
+
 
 
 
@@ -206,10 +213,12 @@ h1{text-shadow: -1px 3px black;
 $('#confirm-delete').on('show.bs.modal', function(e) {
     $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
 });
+
 </script>
 
 <!-- DataTables -->
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="plugins/toastr/toastr.min.js"></script>
 <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>

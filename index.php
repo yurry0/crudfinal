@@ -8,6 +8,7 @@ h1{text-shadow: 1px 1px black;
     letter-spacing: 15px;
     background-color:deepskyblue};
 
+
 </style>
 
   <meta charset="utf-8">
@@ -37,7 +38,7 @@ h1{text-shadow: 1px 1px black;
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-7">
-            <h1 style="text-align: center; margin-left:42rem">HOMEPAGE</h1>
+            <h1 style="text-align: center; margin-left:42rem;color:white">HOMEPAGE</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -50,7 +51,7 @@ h1{text-shadow: 1px 1px black;
           <div class="col-12">
           <div class="jumbotron jumbotron-fluid">
   <div class="container">
-    <h1 class="display-4"> <i class="fas fa-table"></i>  Exercício de CRUD - AV2</h1>
+    <h1 class="display-4" style="color: white; text-align:center;"></i>- Exercício de CRUD - AV2 -</h1>
     <p class="lead"> Bem vindo a homepage! A tabela de Livros se encontra no menu lateral. </p>
   </div>
 </div>
@@ -81,7 +82,7 @@ h1{text-shadow: 1px 1px black;
                       <img class="d-block w-100" src="https://placehold.it/900x500/f39c12/ffffff&text=UPDATE" alt="Third slide">
                     </div>
                     <div class="carousel-item">
-                      <img class="d-block w-100" src="https://placehold.it/900x500/f39c12/ffffff&text=DELETE" alt="Fourth slide">
+                      <img class="d-block w-100" src="https://placehold.it/900x500/12f39c/ffffff&text=DELETE" alt="Fourth slide">
                     </div>
 
                   </div>
