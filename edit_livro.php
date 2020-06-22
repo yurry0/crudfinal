@@ -121,7 +121,7 @@ include "conexao.php";
                   
                   <div class="form-group">
                     <label for="autorInput">Ano</label>
-                    <input type="number" name="ano" required class="form-control" value="<?php echo $ano; ?>"  id="ano">
+                    <input type="number" name="ano"  min="1" max="2020" required class="form-control" value="<?php echo $ano; ?>"  id="ano">
                   </div>
                 </div>
                 <!-- /.card-body -->

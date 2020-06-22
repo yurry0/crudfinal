@@ -16,7 +16,7 @@ h1{text-shadow: -1px 3px black;
 <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AV2</title>
+  <title>Indice - Livros</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- SweetAlert2 -->
@@ -64,12 +64,60 @@ h1{text-shadow: -1px 3px black;
 
               <?php 
               if(isset($_SESSION['del'])){
-              echo $_SESSION['del'];
-              }
               
+                $mensagem = $_SESSION['del'];
+                echo "
+                <script>
+                
+                   window.onload = function(){
+                      toastr.info('$mensagem');
+                    };
+                
+                </script>
+                ";
+      
+            }
+            
+            else if(isset($_SESSION['add'])){
+              
+              $mensagem2 = $_SESSION['add'];
+              echo "
+              <script>
+                 window.onload = function(){
+                    toastr.success('$mensagem2');
+                  };
+              
+              </script>
+              ";
+          
+          }
+
+          else if(isset($_SESSION['edit'])){
+              
+            $mensagem3 = $_SESSION['edit'];
+            echo "
+            <script>
+               window.onload = function(){
+                  toastr.success('$mensagem3');
+                };
+            
+            </script>
+            ";
+          }
               session_unset();
 
               ?>
+
+
+<?php 
+              
+              
+         session_unset();
+
+              ?>
+
+
+
 
       <div class="card">
               <div class="card-header">
@@ -191,22 +239,6 @@ h1{text-shadow: -1px 3px black;
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
-
-
-
-
-<script type="text/javascript">
-
-   window.onload = function(){
-      toastr.info('Atualizou, Mostrou!')
-    };
-
-</script>
-
-
-
-
-
 
 
 <script> 

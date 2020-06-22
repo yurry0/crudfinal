@@ -86,7 +86,7 @@ h1{text-shadow: 1px 1px black;
                   
                   <div class="form-group">
                     <label for="autorInput">Ano</label>
-                    <input type="number" name="ano" required class="form-control"  id="ano" placeholder="Digite o ano de publicação">
+                    <input type="number" name="ano" required class="form-control"  min="1" max="2020" id="ano" placeholder="Digite o ano de publicação">
                   </div>
                 </div>
                 <!-- /.card-body -->

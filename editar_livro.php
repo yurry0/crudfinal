@@ -1,6 +1,6 @@
 <?php
 
-
+session_start();
 include "conexao.php";
 $conn = conexao();
 
@@ -27,13 +27,11 @@ try {
   
   $stmt->execute();
 
-  
 
-  //echo "Edicao feita com sucesso";
-  //echo $id;
-  //echo $titulo;
+
+$_SESSION['edit'] = "Dados editados com sucesso!";
 } catch(PDOException $e) {
-  echo "Error: " . $e->getMessage();
+$_SESSION['edit'] = "Error: " . $e->getMessage();
 }
 $conn = null;
 

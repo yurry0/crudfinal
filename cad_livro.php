@@ -1,6 +1,6 @@
 <?php
 
-
+session_start();
 include "conexao.php";
 $conn = conexao();
 
@@ -30,9 +30,9 @@ try {
 
   
 
-  echo "Novo cadastro efetuado com sucesso!";
+$_SESSION['add'] = "Adicionado com sucesso!";
 } catch(PDOException $e) {
-  echo "Error: " . $e->getMessage();
+$_SESSION['add'] = "Error: " . $e->getMessage();
 }
 $conn = null;
 
