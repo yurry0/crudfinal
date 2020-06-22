@@ -4,14 +4,9 @@
 <head>
 
 
-<script language="JavaScript" type="text/javascript">
-function checkDelete(){
-    return confirm('Você tem certeza que deseja excluir?');
-}
-</script>
 
 <style>
-h1{text-shadow: -1px 3px white;
+h1{text-shadow: -1px 3px black;
     letter-spacing: 15px;
     background-color:deepskyblue};
 
@@ -48,7 +43,7 @@ h1{text-shadow: -1px 3px white;
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-7">
-            <h1 style="text-align: center; margin-left:41rem">Livraria</h1>
+            <h1 style="text-align: center; margin-left:41rem; color:white;">Livraria</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -63,7 +58,14 @@ h1{text-shadow: -1px 3px white;
       include "conexao.php";
 
      ?>
-       
+
+               
+
+
+
+
+
+
       <div class="card">
               <div class="card-header">
                 <h3 class="card-title">Livros Cadastrados</h3>
@@ -132,7 +134,7 @@ h1{text-shadow: -1px 3px white;
                       echo '<td>'.$v['editora'].'</td>';
                       echo '<td>'.$v['ano'].'</td>';
                       echo '<td style="text-align:center"> 
-                      <a class="btn btn-primary btn-sm" href="#">
+                      <a class="btn btn-primary btn-sm" href="visu_livro.php?id='.$v['id'].'">
                       <i class="fas fa-folder">
                       </i>
                       </a>
@@ -140,10 +142,11 @@ h1{text-shadow: -1px 3px white;
                           <i class="fas fa-pencil-alt">
                           </i>
                       </a>
-                      <a class="btn btn-danger btn-sm" onclick="return checkDelete()" href="delete_livro.php?id='.$v['id'].'">
-                          <i class="fas fa-trash">
+                      <a class="btn btn-danger btn-sm" data-href="delete_livro.php?id='.$v['id'].'" data-toggle="modal" data-target="#confirm-delete">
+                      <i class="far fa-trash-alt"></i>
+                        
                           </i>
-                      </a> </td>';
+                      </a>';
                       echo '</tr>';
                     }
                   } catch(PDOException $e) {
@@ -158,15 +161,51 @@ h1{text-shadow: -1px 3px white;
               </div>
               <!-- /.card-body -->
             </div>
-
        
 
+            <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      Confimar Exclusão
+                  </div>
+                  <div class="modal-body">
+                      Essa ação vai excluir o conteúdo <?php echo $v['titulo'];?>. Deseja mesmo excluir?
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                      <a class="btn btn-danger btn-ok">Sim, exclua este conteúdo.</a>
+                  </div>
+              </div>
+          </div>
+      </div>
 
 
-    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+          </section>
     <!-- /.content -->
+
+
   </div>
   <!-- /.content-wrapper -->
+
 </div>
   <?php include "includes/footer.php";
   ?>
@@ -189,6 +228,13 @@ h1{text-shadow: -1px 3px white;
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 <!-- DataTables -->
+<script> 
+$('#confirm-delete').on('show.bs.modal', function(e) {
+    $(this).find('.btn-ok').attr('href', $(e.relatedTarget).data('href'));
+});
+</script>
+
+
 <script src="plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
