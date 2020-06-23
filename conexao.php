@@ -6,10 +6,10 @@ function conexao(){
 
 
   
-$servername = "localhost";
-$username = "root";
-$password = "";
-$db = "livraria";
+$servername = "sql103.epizy.com";
+$username = "epiz_26081063";
+$password = "TqFQWVVsIfY";
+$db = "epiz_26081063_livraria";
 try {
   $conn = new PDO("mysql:host=$servername;dbname=$db;charset=utf8", $username, $password);
   // set the PDO error mode to exception
